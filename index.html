@@ -1,32 +1,5 @@
 <!--
-        En Vue.js, v-text y v-once son directivas que se utilizan para manipular y 
-renderizar contenido dinámico en la interfaz de usuario.
-
-La directiva v-text se utiliza para actualizar el contenido de un elemento HTML 
-con el valor de una expresión o propiedad en la instancia de Vue. Por ejemplo, 
-si tienes una propiedad llamada mensaje en tu instancia de Vue, puedes usar la 
-directiva v-text para mostrar su valor en un elemento HTML. Aquí hay un ejemplo:
-
-
-<span v-text="mensaje"></span>
-En este caso, el contenido del elemento span se actualizará automáticamente con 
-el valor de la propiedad mensaje en la instancia de Vue. Si el valor de mensaje 
-cambia, el contenido del elemento se actualizará automáticamente para reflejar 
-el nuevo valor.
-
-La directiva v-once se utiliza para renderizar un elemento o componente de Vue 
-solo una vez y luego dejar de actualizarlo. Esto es útil cuando tienes contenido
- estático que no necesita actualizarse después de la renderización inicial. 
-Aquí hay un ejemplo:
-
-
-<p v-once>{{ mensaje }}</p>
-
-En este caso, el contenido del elemento p se renderizará con el 
-valor de la propiedad mensaje en la instancia de Vue, pero no se
- actualizará incluso si el valor de mensaje cambia posteriormente.
- Esto puede mejorar el rendimiento en casos en los que el contenido 
-no necesita ser reevaluado.
+    Los atributos reactivos en Vue.js son propiedades definidas en la sección data de una instancia de Vue que están vinculadas a elementos HTML a través de directivas como v-bind. Estas propiedades reactivas pueden cambiar su valor en respuesta a cambios en los datos subyacentes y actualizan automáticamente los elementos HTML vinculados.
 -->
 
 <!DOCTYPE html>
@@ -44,12 +17,44 @@ no necesita ser reevaluado.
         const vm = Vue.createApp({
             data() {
                 return {
-                    text: "Hola vue"
+                    attr: "alt",
+                    img: "https://i.picsum.photos/id/1/5616/3744.jpg?hmac=kKHwwU8s46oNettHKwJ24qOlIAsWN9d2TtsXDoCWWsQ"
                 };
             },
-            template: `<div v-text="text"></div>`
+            template: `<img v-bind:[attr]="img" />`
         }).mount("#app");
         console.log(vm);
     </script>
 </body>
 </html>
+
+<!--
+    <script src="https://unpkg.com/vue@next"></script>
+Esta línea carga la biblioteca Vue.js desde el CDN de unpkg.com. Específicamente, se está cargando la versión más reciente (next) de Vue.js.
+
+
+<div id="app"></div>
+Esta línea crea un contenedor con el ID "app" donde se montará la aplicación Vue.
+
+
+<script>
+    const vm = Vue.createApp({
+        data() {
+            return {
+                attr: "alt",
+                img: "https://i.picsum.photos/id/1/5616/3744.jpg?hmac=kKHwwU8s46oNettHKwJ24qOlIAsWN9d2TtsXDoCWWsQ"
+            };
+        },
+        template: `<img v-bind:[attr]="img" />`
+    }).mount("#app");
+    console.log(vm);
+</script>
+
+
+--const vm = Vue.createApp({ ... }).mount("#app");: Se crea una nueva instancia de la aplicación Vue usando createApp. Dentro de createApp, se definen dos propiedades reactivas en la sección data: attr y img.
+--La propiedad attr tiene el valor de "alt", que se utilizará como nombre del atributo en la directiva v-bind.
+--La propiedad img contiene una URL de una imagen que se utilizará como valor para el atributo dinámico.
+--En la sección template, se define el contenido del componente, que consiste en una etiqueta img. El atributo v-bind:[attr] indica que el nombre del atributo se tomará del valor de la propiedad attr, y el valor del atributo se tomará del valor de la propiedad img.
+--Luego, se monta la instancia de la aplicación Vue en el elemento con el ID "app" utilizando el método mount.
+--Por último, se imprime el objeto vm en la consola. Esto mostrará la instancia de la aplicación Vue y sus propiedades.
+-->
