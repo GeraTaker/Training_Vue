@@ -1,60 +1,29 @@
 <!--
-    Los atributos reactivos en Vue.js son propiedades definidas en la sección data de una instancia de Vue que están vinculadas a elementos HTML a través de directivas como v-bind. Estas propiedades reactivas pueden cambiar su valor en respuesta a cambios en los datos subyacentes y actualizan automáticamente los elementos HTML vinculados.
--->
+    user events
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <script src="https://unpkg.com/vue@next"></script>
-    <div id="app"></div>
-    <script>
-        const vm = Vue.createApp({
-            data() {
-                return {
-                    attr: "alt",
-                    img: "https://i.picsum.photos/id/1/5616/3744.jpg?hmac=kKHwwU8s46oNettHKwJ24qOlIAsWN9d2TtsXDoCWWsQ"
-                };
-            },
-            template: `<img v-bind:[attr]="img" />`
-        }).mount("#app");
-        console.log(vm);
-    </script>
-</body>
-</html>
+La directiva v-on en Vue.js se utiliza para adjuntar controladores de eventos a elementos HTML y 
+manejar las interacciones del usuario, como hacer clic en un botón, ingresar texto 
+en un campo de entrada, pasar el mouse sobre un elemento, entre otros.
 
-<!--
-    <script src="https://unpkg.com/vue@next"></script>
-Esta línea carga la biblioteca Vue.js desde el CDN de unpkg.com. Específicamente, se está cargando la versión más reciente (next) de Vue.js.
+La sintaxis básica de v-on es la siguiente:
 
+<button v-on:click="handleClick">Click me</button>
 
-<div id="app"></div>
-Esta línea crea un contenedor con el ID "app" donde se montará la aplicación Vue.
+En este ejemplo, v-on:click indica que se va a adjuntar un controlador de eventos
+ para el evento de clic al botón. handleClick es el nombre del método o función 
+ que se ejecutará cuando se produzca el evento de clic.
 
+Puedes usar v-on con diferentes tipos de eventos, como click, input, mouseover,
+ keydown, entre otros. Aquí hay otro ejemplo que muestra cómo usar v-on con
+  el evento de entrada (input):
 
-<script>
-    const vm = Vue.createApp({
-        data() {
-            return {
-                attr: "alt",
-                img: "https://i.picsum.photos/id/1/5616/3744.jpg?hmac=kKHwwU8s46oNettHKwJ24qOlIAsWN9d2TtsXDoCWWsQ"
-            };
-        },
-        template: `<img v-bind:[attr]="img" />`
-    }).mount("#app");
-    console.log(vm);
-</script>
+<input v-on:input="handleInput" />
 
+En este caso, el controlador de eventos handleInput se ejecutará cada vez que se ingrese texto en el campo de entrada.
 
---const vm = Vue.createApp({ ... }).mount("#app");: Se crea una nueva instancia de la aplicación Vue usando createApp. Dentro de createApp, se definen dos propiedades reactivas en la sección data: attr y img.
---La propiedad attr tiene el valor de "alt", que se utilizará como nombre del atributo en la directiva v-bind.
---La propiedad img contiene una URL de una imagen que se utilizará como valor para el atributo dinámico.
---En la sección template, se define el contenido del componente, que consiste en una etiqueta img. El atributo v-bind:[attr] indica que el nombre del atributo se tomará del valor de la propiedad attr, y el valor del atributo se tomará del valor de la propiedad img.
---Luego, se monta la instancia de la aplicación Vue en el elemento con el ID "app" utilizando el método mount.
---Por último, se imprime el objeto vm en la consola. Esto mostrará la instancia de la aplicación Vue y sus propiedades.
+Además de utilizar la sintaxis v-on:evento, también puedes abreviarlo utilizando el símbolo @:
+
+<button @click="handleClick">Click me</button>
+<input @input="handleInput" />
+
 -->
